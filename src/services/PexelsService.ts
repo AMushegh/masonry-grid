@@ -9,8 +9,8 @@ export class PexelsService {
 
   async searchPhotos(
     query: string,
-    perPage = 20,
-    page = 1
+    page = 1,
+    perPage = 20
   ): Promise<PexelsPhoto[]> {
     if (!query || !query.trim()) {
       return [];
