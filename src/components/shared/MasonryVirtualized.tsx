@@ -144,7 +144,7 @@ export function MasonryVirtualized<T>(props: MasonryVirtualizedProps<T>) {
       },
       {
         root: null,
-        rootMargin: "200px",
+        rootMargin: "800px",
       }
     );
     io.observe(node);
