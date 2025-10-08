@@ -29,7 +29,12 @@ export const App = () => {
         <img
           src={p.src.medium}
           alt={p.alt}
-          style={{ width: "100%", display: "block", borderRadius: 12 }}
+          style={{
+            width: "100%",
+            display: "block",
+            borderRadius: 12,
+            aspectRatio: `${p.width} / ${p.height}`,
+          }}
         />
       )}
     />

@@ -20,7 +20,7 @@ import {
   Sentinel,
 } from "./styled";
 
-export type MasonryVirtualizedProps<T> = {
+type MasonryVirtualizedProps<T> = {
   items: T[];
   renderItem: (item: T, index: number) => React.ReactNode;
   columnWidth?: number;
@@ -31,6 +31,8 @@ export type MasonryVirtualizedProps<T> = {
   onLoadMore?: () => void;
   hasMore?: boolean;
 };
+
+const NEW_HEIGHT_TRESHOLD = 2;
 
 export function MasonryVirtualized<T>(props: MasonryVirtualizedProps<T>) {
   const {
@@ -118,7 +120,8 @@ export function MasonryVirtualized<T>(props: MasonryVirtualizedProps<T>) {
         const entry = entries[0];
         const newHeight = sanitizeHeight(entry.contentRect.height, 0);
         setHeights((prev) => {
-          if (prev[i] === newHeight) return prev;
+          const old = prev[i];
+          if (Math.abs(old - newHeight) < NEW_HEIGHT_TRESHOLD) return prev;
           const next = prev.slice();
           next[i] = newHeight;
           return next;
