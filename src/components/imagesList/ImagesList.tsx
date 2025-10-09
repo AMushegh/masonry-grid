@@ -35,26 +35,28 @@ export const ImagesList = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search images..."
       />
-      <MasonryVirtualized
-        items={photos}
-        estimateHeight={(p) =>
-          Math.max(120, Math.round((p.height / p.width) * 280))
-        }
-        onLoadMore={loadMore}
-        hasMore={hasMore}
-        renderItem={(p) => (
-          <img
-            src={p.src.medium}
-            alt={p.alt}
-            style={{
-              width: "100%",
-              display: "block",
-              borderRadius: 12,
-              aspectRatio: `${p.width} / ${p.height}`,
-            }}
-          />
-        )}
-      />
+      <div style={{ paddingTop: "60px", flex: 1, overflow: "auto" }}>
+        <MasonryVirtualized
+          items={photos}
+          estimateHeight={(p) =>
+            Math.max(120, Math.round((p.height / p.width) * 280))
+          }
+          onLoadMore={loadMore}
+          hasMore={hasMore}
+          renderItem={(p) => (
+            <img
+              src={p.src.medium}
+              alt={p.alt}
+              style={{
+                width: "100%",
+                display: "block",
+                borderRadius: 12,
+                aspectRatio: `${p.width} / ${p.height}`,
+              }}
+            />
+          )}
+        />
+      </div>
     </>
   );
 };
