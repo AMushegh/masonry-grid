@@ -7,8 +7,7 @@ export const useElementSize = <T extends HTMLElement>() => {
   const lastSize = useRef({ width: 0, height: 0 });
 
   const ref = useResizeObserver<T>((entry) => {
-    const { inlineSize: width, blockSize: height } = (entry as any)
-      .contentBoxSize
+    const { inlineSize: width, blockSize: height } = (entry as any).contentBoxSize
       ? Array.isArray((entry as any).contentBoxSize)
         ? (entry as any).contentBoxSize[0]
         : (entry as any).contentBoxSize

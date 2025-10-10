@@ -10,22 +10,12 @@ type SearchBarProps = {
   placeholder?: string;
 };
 
-export const ImagesListFilterInput: React.FC<SearchBarProps> = ({
-  value,
-  onChange,
-  placeholder = "Search...",
-}) => {
+export const ImagesListFilterInput: React.FC<SearchBarProps> = ({ value, onChange, placeholder = "Search..." }) => {
   return (
     <BarContainer>
       <TopBlur />
       <InputWrapper>
-        <Input
-          type="text"
-          name="search"
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-        />
+        <Input type="text" name="search" value={value} onChange={onChange} placeholder={placeholder} />
       </InputWrapper>
     </BarContainer>
   );

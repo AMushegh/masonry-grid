@@ -5,13 +5,11 @@ export const MasonryContainer = styled.div`
   width: 100%;
 `;
 
-export const MasonryItemsWrapper = styled.div.attrs<{ height: number }>(
-  (props) => ({
-    style: {
-      height: `${props.height}px`,
-    },
-  })
-)`
+export const MasonryItemsWrapper = styled.div.attrs<{ height: number }>((props) => ({
+  style: {
+    height: `${props.height}px`,
+  },
+}))`
   position: relative;
   width: 100%;
 `;
@@ -45,5 +43,7 @@ export const MasonryItem = styled.div.attrs<{
 }))`
   position: absolute;
   will-change: transform, height;
-  transition: transform 0.25s ease, height 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    height 0.25s ease;
 `;

@@ -15,7 +15,7 @@ export class ApiService {
       (err) => {
         console.error(err.message);
         return Promise.reject(err);
-      }
+      },
     );
   }
 
@@ -24,24 +24,12 @@ export class ApiService {
     return data;
   }
 
-  async post<T>(
-    url: string,
-    body?: unknown,
-    config?: AxiosRequestConfig
-  ): Promise<T> {
-    const { data }: AxiosResponse<T> = await this.client.post(
-      url,
-      body,
-      config
-    );
+  async post<T>(url: string, body?: unknown, config?: AxiosRequestConfig): Promise<T> {
+    const { data }: AxiosResponse<T> = await this.client.post(url, body, config);
     return data;
   }
 
-  async put<T>(
-    url: string,
-    body?: unknown,
-    config?: AxiosRequestConfig
-  ): Promise<T> {
+  async put<T>(url: string, body?: unknown, config?: AxiosRequestConfig): Promise<T> {
     const { data }: AxiosResponse<T> = await this.client.put(url, body, config);
     return data;
   }

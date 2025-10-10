@@ -3,14 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { pexelsService } from "@/services";
 
-import {
-  BackButton,
-  Container,
-  ErrorText,
-  ImageWrapper,
-  InfoBox,
-  Loading,
-} from "./styled";
+import { BackButton, Container, ErrorText, ImageWrapper, InfoBox, Loading } from "./styled";
 
 export const ImageDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();

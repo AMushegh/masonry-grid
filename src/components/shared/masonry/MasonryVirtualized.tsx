@@ -1,26 +1,10 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import {
-  buildMasonryLayout,
-  getVisibleIndices,
-  sanitizeHeight,
-} from "@/helpers/masonry";
+import { buildMasonryLayout, getVisibleIndices, sanitizeHeight } from "@/helpers/masonry";
 import { useElementSize } from "@/hooks/useElementSize";
 import { useWindowScroll } from "@/hooks/useWindowScroll";
 
-import {
-  LoaderContainer,
-  MasonryContainer,
-  MasonryItem,
-  MasonryItemsWrapper,
-  Sentinel,
-} from "./styled";
+import { LoaderContainer, MasonryContainer, MasonryItem, MasonryItemsWrapper, Sentinel } from "./styled";
 
 type MasonryVirtualizedProps<T> = {
   items: T[];
@@ -49,18 +33,15 @@ export function MasonryVirtualized<T>(props: MasonryVirtualizedProps<T>) {
     hasMore = false,
   } = props;
   const rootRef = useRef<HTMLDivElement | null>(null);
-  const { ref: sizeRef, width: containerWidth } =
-    useElementSize<HTMLDivElement>();
+  const { ref: sizeRef, width: containerWidth } = useElementSize<HTMLDivElement>();
 
   const [heights, setHeights] = useState<number[]>(() =>
-    items.map((it, i) => sanitizeHeight(estimateHeight(it, i), 200))
+    items.map((it, i) => sanitizeHeight(estimateHeight(it, i), 200)),
   );
 
   useEffect(() => {
     setHeights((prev) => {
-      const next = items.map((it, i) =>
-        sanitizeHeight(prev[i] ?? estimateHeight(it, i), 200)
-      );
+      const next = items.map((it, i) => sanitizeHeight(prev[i] ?? estimateHeight(it, i), 200));
       return next;
     });
   }, [items, estimateHeight]);
@@ -68,10 +49,7 @@ export function MasonryVirtualized<T>(props: MasonryVirtualizedProps<T>) {
   const columnCount = useMemo(() => {
     if (fixedColumnCount && fixedColumnCount > 0) return fixedColumnCount;
     if (!containerWidth) return 1;
-    const full = Math.max(
-      1,
-      Math.floor((containerWidth + gap) / (columnWidth + gap))
-    );
+    const full = Math.max(1, Math.floor((containerWidth + gap) / (columnWidth + gap)));
     return full;
   }, [fixedColumnCount, containerWidth, columnWidth, gap]);
 
@@ -82,21 +60,12 @@ export function MasonryVirtualized<T>(props: MasonryVirtualizedProps<T>) {
 
     const totalGaps = gap * (columnCount - 1);
 
-    const w = Math.max(
-      1,
-      Math.floor((containerWidth - totalGaps) / columnCount)
-    );
+    const w = Math.max(1, Math.floor((containerWidth - totalGaps) / columnCount));
     return w;
   }, [containerWidth, columnCount, gap, columnWidth]);
 
   const { rects, containerHeight } = useMemo(() => {
-    return buildMasonryLayout(
-      items.length,
-      columnCount,
-      effectiveColWidth,
-      gap,
-      heights
-    );
+    return buildMasonryLayout(items.length, columnCount, effectiveColWidth, gap, heights);
   }, [items.length, columnCount, effectiveColWidth, gap, heights]);
 
   const { top: scrollTop, vh: viewportH } = useWindowScroll();
@@ -106,7 +75,7 @@ export function MasonryVirtualized<T>(props: MasonryVirtualizedProps<T>) {
 
   const visibleIndices = useMemo(
     () => getVisibleIndices(rects, viewportTop, viewportBottom),
-    [rects, viewportTop, viewportBottom]
+    [rects, viewportTop, viewportBottom],
   );
   const visibleSet = useMemo(() => new Set(visibleIndices), [visibleIndices]);
   const resizeObservers = useRef<(ResizeObserver | null)[]>([]);
@@ -132,7 +101,7 @@ export function MasonryVirtualized<T>(props: MasonryVirtualizedProps<T>) {
       ro.observe(node);
       resizeObservers.current[i] = ro;
     },
-    []
+    [],
   );
 
   const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -150,17 +119,14 @@ export function MasonryVirtualized<T>(props: MasonryVirtualizedProps<T>) {
       {
         root: null,
         rootMargin: "2000px",
-      }
+      },
     );
     io.observe(node);
 
     return () => io.disconnect();
   }, [hasMore, onLoadMore]);
 
-  const safeContainerHeight =
-    Number.isFinite(containerHeight) && containerHeight > 0
-      ? containerHeight
-      : 1;
+  const safeContainerHeight = Number.isFinite(containerHeight) && containerHeight > 0 ? containerHeight : 1;
 
   return (
     <MasonryContainer
@@ -178,13 +144,7 @@ export function MasonryVirtualized<T>(props: MasonryVirtualizedProps<T>) {
           if (!r || !visible) return null;
 
           return (
-            <MasonryItem
-              width={r.width}
-              x={r.x}
-              y={r.y}
-              key={i}
-              ref={attachMeasureRef(i)}
-            >
+            <MasonryItem width={r.width} x={r.x} y={r.y} key={i} ref={attachMeasureRef(i)}>
               {renderItem(item, i)}
             </MasonryItem>
           );

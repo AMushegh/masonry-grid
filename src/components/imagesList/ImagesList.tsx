@@ -41,19 +41,12 @@ export const ImagesList = () => {
       <ImageListWrapper>
         <MasonryVirtualized
           items={photos}
-          estimateHeight={(p) =>
-            Math.max(120, Math.round((p.height / p.width) * 280))
-          }
+          estimateHeight={(p) => Math.max(120, Math.round((p.height / p.width) * 280))}
           onLoadMore={loadMore}
           hasMore={hasMore}
           renderItem={(p) => (
             <Link to={`/image/${p.id}`}>
-              <GridImage
-                height={p.height}
-                width={p.width}
-                src={p.src.medium}
-                alt={p.alt}
-              />
+              <GridImage height={p.height} width={p.width} src={p.src.medium} alt={p.alt} />
             </Link>
           )}
         />

@@ -2,11 +2,7 @@ export const sanitizeHeight = (val: any, fallback = 0): number => {
   return Number.isFinite(val) && val > 0 ? Math.round(val) : fallback;
 };
 
-export const getVisibleIndices = (
-  rects: Rect[],
-  viewportTop: number,
-  viewportBottom: number
-) => {
+export const getVisibleIndices = (rects: Rect[], viewportTop: number, viewportBottom: number) => {
   const visible: number[] = [];
   for (let i = 0; i < rects.length; i++) {
     const r = rects[i];
@@ -25,7 +21,7 @@ export const buildMasonryLayout = (
   columnCount: number,
   colWidth: number,
   gap: number,
-  heights: number[]
+  heights: number[],
 ) => {
   const rects: Rect[] = new Array(itemCount);
   const colHeights = new Array(columnCount).fill(0) as number[];
