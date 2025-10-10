@@ -1,10 +1,3 @@
-import {
-  buildMasonryLayout,
-  getVisibleIndices,
-  sanitizeHeight,
-} from "../../../helpers/masonry";
-import { useElementSize } from "../../../hooks/useElementSize";
-import { useWindowScroll } from "../../../hooks/useWindowScroll";
 import React, {
   useCallback,
   useEffect,
@@ -12,6 +5,15 @@ import React, {
   useRef,
   useState,
 } from "react";
+
+import {
+  buildMasonryLayout,
+  getVisibleIndices,
+  sanitizeHeight,
+} from "@/helpers/masonry";
+import { useElementSize } from "@/hooks/useElementSize";
+import { useWindowScroll } from "@/hooks/useWindowScroll";
+
 import {
   LoaderContainer,
   MasonryContainer,

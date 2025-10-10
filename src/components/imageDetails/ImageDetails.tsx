@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { pexelsService } from "../../services";
+
+import { pexelsService } from "@/services";
 
 import {
   BackButton,

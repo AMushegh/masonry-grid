@@ -1,4 +1,4 @@
-import { ApiService } from "./ApiService";
+import { ApiService } from "@/services/ApiService";
 
 export class PexelsService {
   private api: ApiService;

@@ -1,5 +1,7 @@
 import React from "react";
-import { Input } from "../shared/uiKit/Input";
+
+import { Input } from "@/components/shared/uiKit/Input";
+
 import { BarContainer, InputWrapper, TopBlur } from "./styled";
 
 type SearchBarProps = {

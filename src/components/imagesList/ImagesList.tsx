@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-
-import { MasonryVirtualized } from "../shared/masonry/MasonryVirtualized";
-import { pexelsService } from "../../services";
-import { useDebounce } from "../../hooks/useDebounce";
-import { ImagesListFilterInput } from "./ImagesListFilterInput";
 import { Link } from "react-router-dom";
+
+import { pexelsService } from "@/services";
+import { useDebounce } from "@/hooks/useDebounce";
+import { MasonryVirtualized } from "@/components/shared/masonry/MasonryVirtualized";
+import { ImagesListFilterInput } from "@/components/imagesList/ImagesListFilterInput";
+
 import { GridImage, ImageListWrapper } from "./styled";
 
 export const ImagesList = () => {

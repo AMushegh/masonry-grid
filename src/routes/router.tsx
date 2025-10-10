@@ -1,11 +1,11 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-
-import { ContentContainer } from "../components/contentContainer/ContentContainer";
 import { lazy } from "react";
-import { HOME_PATH, IMAGE_DETAILS_PATH } from "./paths";
 
-const ImagesGridPage = lazy(() => import("../pages/ImagesGridPage"));
-const SingleImagePage = lazy(() => import("../pages/SingleImagePage"));
+import { ContentContainer } from "@/components/contentContainer/ContentContainer";
+import { HOME_PATH, IMAGE_DETAILS_PATH } from "@/routes/paths";
+
+const ImagesGridPage = lazy(() => import("@/pages/ImagesGridPage"));
+const SingleImagePage = lazy(() => import("@/pages/SingleImagePage"));
 
 export const router = createBrowserRouter([
   {

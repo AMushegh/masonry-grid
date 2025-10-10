@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
-import { useResizeObserver } from "./useResizeObserver";
+
+import { useResizeObserver } from "@/hooks/useResizeObserver";
 
 export const useElementSize = <T extends HTMLElement>() => {
   const [size, setSize] = useState({ width: 0, height: 0 });
