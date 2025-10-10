@@ -4,6 +4,8 @@ import { MasonryVirtualized } from "../shared/masonry/MasonryVirtualized";
 import { pexelsService } from "../../services";
 import { useDebounce } from "../../hooks/useDebounce";
 import { ImagesListFilterInput } from "./ImagesListFilterInput";
+import { Link } from "react-router-dom";
+import { GridImage, ImageListWrapper } from "./styled";
 
 export const ImagesList = () => {
   const [photos, setPhotos] = useState<PexelsPhoto[]>([]);
@@ -35,7 +37,7 @@ export const ImagesList = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search images..."
       />
-      <div style={{ paddingTop: "60px", flex: 1, overflow: "auto" }}>
+      <ImageListWrapper>
         <MasonryVirtualized
           items={photos}
           estimateHeight={(p) =>
@@ -44,19 +46,17 @@ export const ImagesList = () => {
           onLoadMore={loadMore}
           hasMore={hasMore}
           renderItem={(p) => (
-            <img
-              src={p.src.medium}
-              alt={p.alt}
-              style={{
-                width: "100%",
-                display: "block",
-                borderRadius: 12,
-                aspectRatio: `${p.width} / ${p.height}`,
-              }}
-            />
+            <Link to={`/image/${p.id}`}>
+              <GridImage
+                height={p.height}
+                width={p.width}
+                src={p.src.medium}
+                alt={p.alt}
+              />
+            </Link>
           )}
         />
-      </div>
+      </ImageListWrapper>
     </>
   );
 };

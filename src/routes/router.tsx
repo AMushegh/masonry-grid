@@ -4,16 +4,16 @@ import { ContentContainer } from "../components/contentContainer/ContentContaine
 import { lazy } from "react";
 import { HOME_PATH, IMAGE_DETAILS_PATH } from "./paths";
 
-const Images = lazy(() => import("../pages/Images"));
-const ImageDetails = lazy(() => import("../pages/ImageDetails"));
+const ImagesGridPage = lazy(() => import("../pages/ImagesGridPage"));
+const SingleImagePage = lazy(() => import("../pages/SingleImagePage"));
 
 export const router = createBrowserRouter([
   {
     path: HOME_PATH,
     element: <ContentContainer />,
     children: [
-      { index: true, element: <Images /> },
-      { path: IMAGE_DETAILS_PATH, element: <ImageDetails /> },
+      { index: true, element: <ImagesGridPage /> },
+      { path: IMAGE_DETAILS_PATH, element: <SingleImagePage /> },
       { path: "*", element: <Navigate to="/" replace /> },
     ],
   },

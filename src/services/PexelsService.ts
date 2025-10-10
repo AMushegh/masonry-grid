@@ -36,7 +36,7 @@ export class PexelsService {
     }
   }
 
-  async getPhotoById(id: number): Promise<PexelsPhoto> {
+  async getPhotoById(id: number | string): Promise<PexelsPhoto> {
     try {
       const data = await this.api.get<PexelsPhoto>(`/photos/${id}`);
 

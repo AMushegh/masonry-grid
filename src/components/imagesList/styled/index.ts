@@ -28,3 +28,19 @@ export const InputWrapper = styled.div`
   justify-content: center;
   display: flex;
 `;
+
+export const GridImage = styled.img.withConfig({
+  shouldForwardProp: (prop) => !["width", "height"].includes(prop),
+})<{ height: number; width: number }>`
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  aspect-ratio: ${({ width, height }) => `${width} / ${height}`};
+  object-fit: cover;
+`;
+
+export const ImageListWrapper = styled.div`
+  padding-top: 70px;
+  flex: 1;
+  overflow: auto;
+`;
