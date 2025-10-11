@@ -6,7 +6,7 @@
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "types": ["vite/client"],
+    "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom", "@testing-library/user-event"],
     "skipLibCheck": true,
     "typeRoots": ["node_modules/@types", "@types"],
 
@@ -26,6 +26,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
+    /* Alias */
     "paths": {
       "@/*": ["src/*"]
     }
